@@ -55,8 +55,29 @@ and override with file in the Install guide
 
         module.exports = withNativeWind(config, { input: './global.css' })
 
-    ## snippet
-    rnfes
+  ## snippet
+          rnfes
 
-    ## to restart project an clear cache
-    npx expo start --clear
+   ## to restart project an clear cache
+          npx expo start --clear
+
+  ## Customize Expo app to show logo of application when it is loading:
+   by Fixing "assets not found error" Unable to resolve asset "./assets/images/icon.png" from "icon" in your app.json or app.config.js
+  
+  ### edit app.json:
+   from: "icon": "./assets/images/icon.png",
+   to:  "icon": "./assets/images/logo.png",
+   for android: 
+   change 
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/logo.png",
+   for web:
+          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/logo.png",
+    expo-splash-screen
+          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/logo.png",
+
+
+
+
