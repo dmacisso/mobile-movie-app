@@ -81,3 +81,9 @@ and override with file in the Install guide
 
 
 
+## React hooks:
+A function that 
+1. starts with the word 'use'
+2. typically are called at the top of the function component.
+3. expose additional functionalities
+   - For Example  define a router using the useRouter hook allowing us to move between screens programmatically. Go to another page or screen when something happens. 
