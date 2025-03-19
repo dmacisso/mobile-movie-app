@@ -1,13 +1,13 @@
-
 [YouTube Tutorial](https://www.youtube.com/watch?v=f8Z9JyB2EIE)
 
 #### Expo is to react-native what Next.js and Vite is to React
-1.  Improved cli over the react-native cli
-2. <b>Over air updates:</b>
-   - users can get latest code without needing App store approval
-3. Differences 
 
-  ![alt text](image.png)
+1.  Improved cli over the react-native cli
+2.  <b>Over air updates:</b>
+    - users can get latest code without needing App store approval
+3.  Differences
+
+![alt text](image.png)
 
 4. NativeWind allows you to write Tailwind like CSS styles in react native.
 5. <View is like <Div <p <h with added functionality.
@@ -18,29 +18,29 @@
 9. <TouchableWithoutFeedback
 10. <ActivityIndicator
 11. <FlatList
-    - For rendering long list of items that need to be scrolled.  Like map in React with extra features which already accepts some props. such as "data" props for an array of data to map, and a "renderItem" prop
-  ![alt text](image-1.png)
+
+    - For rendering long list of items that need to be scrolled. Like map in React with extra features which already accepts some props. such as "data" props for an array of data to map, and a "renderItem" prop
+      ![alt text](image-1.png)
 
 12. <ScrollView
 13. <SafeAreaView
-    
-    -A safe zone to render app content within, with out it being covered by the  device hardware feature. e.g Status bar
+
+    -A safe zone to render app content within, with out it being covered by the device hardware feature. e.g Status bar
+
 14. <Image and <ImageBackground
+
     - SVG not supported
     - need a 3rd party package react-native-svg
 
-15. <Modal 
-16. <Alert 
-17. <Switch for toggles 
+15. <Modal
+16. <Alert
+17. <Switch for toggles
 18. <StatusBar from Expo is preferred
-
 
 ## Native Wind Installation.
 
-
-[Follow the steps from Native Wind official 
+[Follow the steps from Native Wind official
 Installation Guide for Expo](https://www.nativewind.dev/getting-started/installation)
-
 
 run
 
@@ -55,42 +55,47 @@ and override with file in the Install guide
 
         module.exports = withNativeWind(config, { input: './global.css' })
 
-  ## snippet
+## snippet
+
           rnfes
 
-   ## to restart project an clear cache
+## to restart project an clear cache
+
           npx expo start --clear
 
-  ## Customize Expo app to show logo of application when it is loading:
-   by Fixing "assets not found error" Unable to resolve asset "./assets/images/icon.png" from "icon" in your app.json or app.config.js
-  
-  ### edit app.json:
-   from: "icon": "./assets/images/icon.png",
-   to:  "icon": "./assets/images/logo.png",
-   for android: 
-   change 
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "foregroundImage": "./assets/images/logo.png",
-   for web:
-          "image": "./assets/images/splash-icon.png",
-          "image": "./assets/images/logo.png",
-    expo-splash-screen
-          "image": "./assets/images/splash-icon.png",
-          "image": "./assets/images/logo.png",
+## Customize Expo app to show logo of application when it is loading:
 
+by Fixing "assets not found error" Unable to resolve asset "./assets/images/icon.png" from "icon" in your app.json or app.config.js
 
+### edit app.json:
 
+from: "icon": "./assets/images/icon.png",
+to: "icon": "./assets/images/logo.png",
+for android:
+change
+"foregroundImage": "./assets/images/adaptive-icon.png",
+"foregroundImage": "./assets/images/logo.png",
+for web:
+"image": "./assets/images/splash-icon.png",
+"image": "./assets/images/logo.png",
+expo-splash-screen
+"image": "./assets/images/splash-icon.png",
+"image": "./assets/images/logo.png",
 
 ## React hooks:
-A function that 
+
+A function that
+
 1. starts with the word 'use'
 2. typically are called at the top of the function component.
 3. expose additional functionalities
-   - For Example  define a router using the useRouter hook allowing us to move between screens programmatically. Go to another page or screen when something happens. 
+   - For Example define a router using the useRouter hook allowing us to move between screens programmatically. Go to another page or screen when something happens.
 
 ## TMDB
+
 [A movies database](https://www.themoviedb.org/?language=en-US)
 [API](https://developer.themoviedb.org/reference/intro/getting-started)
+
 1. Select NodeJS
 2. Get API Key
    - Login or Create account
@@ -103,10 +108,20 @@ A function that
    - response shows over 49,000 pages with much detail of almost 1 million movies.
 
 For our code:
-1.  Copy the entire fetch request. 
+
+1.  Copy the entire fetch request.
 2.  Create a new folder/file called 'services/api.ts'
 3.  Paste in the copied fetch request as a template. REM it out.
-4.  Use the template to create a TMDB config export in conjunction with a .env file. 
+4.  Use the template to create a TMDB config export in conjunction with a .env file.
 
+## Custom Hook
 
+To handle the fetching of data in a clean reusable and scalable way. Without cluttering the component by abstracting away the logic for fetching the data, managing the error and loading state. Also, manually trigger a refetch when needed.
 
+1. Create a useFetch.ts file in the services folder.
+2. Create the useFetch function which accepts the Fetch function as a parameter, e.g,:
+   - fetchMovies
+   - fetchMovieDetails
+   - of type function the returns a promise of generic parameter T
+   - const userFetch = <T>(fetchFunction: () => Promise<T> ) => {}
+  
