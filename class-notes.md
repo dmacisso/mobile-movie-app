@@ -87,3 +87,26 @@ A function that
 2. typically are called at the top of the function component.
 3. expose additional functionalities
    - For Example  define a router using the useRouter hook allowing us to move between screens programmatically. Go to another page or screen when something happens. 
+
+## TMDB
+[A movies database](https://www.themoviedb.org/?language=en-US)
+[API](https://developer.themoviedb.org/reference/intro/getting-started)
+1. Select NodeJS
+2. Get API Key
+   - Login or Create account
+3. Get and save your api key and token
+4. Go to <>API References
+5. Click "Try it" to see authentication response
+6. Search for "discover movie", the endpoint for discovering movies.
+   ![alt text](image-1.png)
+7. Click "Try it"
+   - response shows over 49,000 pages with much detail of almost 1 million movies.
+
+For our code:
+1.  Copy the entire fetch request. 
+2.  Create a new folder/file called 'services/api.ts'
+3.  Paste in the copied fetch request as a template. REM it out.
+4.  Use the template to create a TMDB config export in conjunction with a .env file. 
+
+
+
