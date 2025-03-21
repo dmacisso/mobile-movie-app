@@ -25,8 +25,8 @@ const useFetch = <T>(fetchFunction: () => Promise<T>, autoFetch = true) => {
 
   const reset = () => {
     setData(null);
-    setLoading(false);
     setError(null);
+    setLoading(false);
   };
 
   //* useEffect when you want to do something at the start of your component load

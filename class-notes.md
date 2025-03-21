@@ -125,3 +125,6 @@ To handle the fetching of data in a clean reusable and scalable way. Without clu
    - of type function the returns a promise of generic parameter T
    - const userFetch = <T>(fetchFunction: () => Promise<T> ) => {}
   
+### React 19 comes with a host of new hooks
+Ex: The use() useActionState() useFormState() useTransition() etc
+  
