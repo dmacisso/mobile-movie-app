@@ -128,3 +128,48 @@ To handle the fetching of data in a clean reusable and scalable way. Without clu
 ### React 19 comes with a host of new hooks
 Ex: The use() useActionState() useFormState() useTransition() etc
   
+
+## Develop Search Screens
+1. autofetch is set to false
+fetch the object that represents the movie where query matches the 'user input for the search'
+
+             const {
+               data: movies,
+               loading,
+               error,
+            } = useFetch(() => fetchMovies({ query: searchQuery }), false);
+
+
+2. ListHeaderComponent is a special Flatlist prop that renders an element (react fragment) that contains what is displayed at the top of the list.
+
+3.  (Non-null Assertion): This operator tells TypeScript that you are certain the value is not null or undefined. It effectively overrides TypeScript's type checking for null or undefined values.
+
+            {!loading &&
+              !error &&
+              searchQuery.trim() &&
+              movies?.length! > 0 && (
+                <Text className="text-xl text-white font-bold">
+                  Search Results for{' '}
+                  <Text className="text-accent">{searchQuery}</Text>
+                </Text>
+              )}
+
+   
+   ## Debouncing
+   So not to overload the api with every key stroke. Wrap a search term into a timeout function
+
+         useEffect(() => {
+            // const func = async () => {
+            const timeoutId = setTimeout(async () => {
+               if (searchQuery.trim()) {
+               await loadMovies(); //* since we are using await, need to wrap the if statement in a async function
+               } else {
+               reset();
+               }
+            }, 500);
+
+            // func();
+            //* clear the timeout by returning a callback function with that ID
+            return () => clearTimeout(timeoutId);
+         }, [searchQuery]);
+         //* recall the function every time the searchQuery changes.
