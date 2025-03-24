@@ -16,7 +16,6 @@ import { fetchMovies } from '@/services/api';
 import MovieCard from '@/components/movieCard';
 
 export default function Index() {
-  // * define the router using the useRouter hook allowing us to move between screens programmatically. Go to another page or screen when something happens.
   const router = useRouter();
 
   const {
@@ -55,18 +54,10 @@ export default function Index() {
               <Text className="text-lg text-white font-bold mt-5 mb-3">
                 Latest Movies
               </Text>
-              //* FlatList is very extensible; accepts a lot of configuration
-              props //* props to provide
+
               <FlatList
                 data={movies}
-                //* renderItem is like map of the data, need to destructure the iterator then for each you can have an immediate return, this means parens and not curly braces.
-                renderItem={({ item }) => (
-                  // <Text className="text-sm text-white">{item.title}</Text>
-                  <MovieCard 
-                  {...item  }
-                  />
-                )}
-                //* keyExtractor helps react to quantitate and position the element
+                renderItem={({ item }) => <MovieCard {...item} />}
                 keyExtractor={(item) => item.id.toString()}
                 numColumns={3}
                 columnWrapperStyle={{
@@ -85,3 +76,12 @@ export default function Index() {
     </View>
   );
 }
+
+// * define the router using the useRouter hook allowing us to move between screens programmatically. Go to another page or screen when something happens.
+
+//* FlatList is very extensible; accepts a lot of configuration
+//* props to provide
+
+//* renderItem is like map of the data, need to destructure the iterator then for each you can have an immediate return, this means parens and not curly braces.
+
+//* keyExtractor helps react to quantitate and position the element

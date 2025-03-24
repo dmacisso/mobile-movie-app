@@ -3,6 +3,7 @@ import SearchBar from '@/components/SearchBar';
 import { icons } from '@/constants/icons';
 import { images } from '@/constants/images';
 import { fetchMovies } from '@/services/api';
+import { updateSearchCount } from '@/services/appwrite';
 import useFetch from '@/services/useFetch';
 import { useEffect, useState } from 'react';
 import { View, Text, Image, FlatList, ActivityIndicator } from 'react-native';
@@ -11,7 +12,7 @@ const Search = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const {
-    data: movies,
+    data: movies = [],
     loading,
     error,
     refetch: loadMovies,
@@ -19,10 +20,16 @@ const Search = () => {
   } = useFetch(() => fetchMovies({ query: searchQuery }), false);
 
   useEffect(() => {
+    //@ts-ignore
+    // updateSearchCount(searchQuery, movies?.[0]);
     // const func = async () => {
     const timeoutId = setTimeout(async () => {
       if (searchQuery.trim()) {
         await loadMovies(); //* since we are using await, need to wrap the if statement in a async function
+        //@ts-ignore
+        if (movies?.length > 0 && movies?.[0]) {
+          await updateSearchCount(searchQuery, movies[0]);
+        }
       } else {
         reset();
       }

@@ -173,3 +173,49 @@ fetch the object that represents the movie where query matches the 'user input f
             return () => clearTimeout(timeoutId);
          }, [searchQuery]);
          //* recall the function every time the searchQuery changes.
+
+## Appwrite Setup
+## Algorithm that displays trending status of  movies;  i.e. what movies are the app users searching for.
+1. The more users are performing a specific search, the higher its trending status become. Requires tracking and analyzing search patterns over time. This requires a database to store searches permanently.
+2. Make use as a BaaS (backend as a service). Provides APIs and tools to store and manage data
+3. This project uses Appwrite. Simple, openSource, and free to use.
+
+Create a project in Appwrite
+place the EXPO_PUBLIC_APPWRITE_PROJECT_ID=#### in the env file
+Chose react native, and create a bundle id: com.dvm.movieapp
+run this in your bash shell
+
+     npx expo install react-native-appwrite react-native-url-polyfill
+
+click Next, and Next again to skip the optional steps
+then "Go to dashboard" to set up the backend.
+1. Create a database and collections within it.
+   1. call it "movies" => create
+   2. You will get a database ID.
+   3. EXPO_PUBLIC_APPWRITE_DATABASE_ID=#### goes into .env
+2. Create a collection
+   1. call it "metrics" => Create
+   2. You will get a collection ID 
+   3. EXPO_PUBLIC_APPWRITE_COLLECTION_ID=#### goes into .env
+3. Now create attributes
+   1.  Select the "attribute" tab. => Create attribute => string 
+   2.  Attribute Key* searchTerm => 1000 character => required => Create
+   3.  integer Attribute Key* count => default 0 =>Create
+       1.  This is how many times a user searched for a specific search term
+   4. url Attribute Key* poster_url => required =>Create
+   5. integer  Attribute Key* movie_id => required =>Create
+   6. string  Attribute Key* title => 1000 => required =>Create
+   
+   ![alt text](image-2.png)
+
+   Permissions:
+   1. Go to "Settings" tab
+   2. Scroll down to 'Permissions'
+   3. Click the plus icon +
+   4. select "Any" and grant full CRUD => Update 
+
+   Test Permissions
+   1. create a new file services/appwrite.ts
+
+   
+   
