@@ -216,6 +216,18 @@ then "Go to dashboard" to set up the backend.
 
    Test Permissions
    1. create a new file services/appwrite.ts
+   2. create a backend service tool for a database and trending functions.
+      1. to store persistent data and show the top trending movies.
+
+## Install MaskedView  for React Native
+text appears as a cutout over an image
+    
+      npm install --save @react-native-masked-view/masked-view
+      import MaskedView from '@react-native-masked-view/masked-view';
+
+
+
+
 
    
    
