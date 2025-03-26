@@ -1,4 +1,5 @@
 [YouTube Tutorial](https://www.youtube.com/watch?v=f8Z9JyB2EIE)
+[Tutorial Source Code](<https://github.com/adrianhajdin/react-native-movie-app/blob/main/app/(tabs)/index.tsx>)
 
 #### Expo is to react-native what Next.js and Vite is to React
 
@@ -124,23 +125,23 @@ To handle the fetching of data in a clean reusable and scalable way. Without clu
    - fetchMovieDetails
    - of type function the returns a promise of generic parameter T
    - const userFetch = <T>(fetchFunction: () => Promise<T> ) => {}
-  
+
 ### React 19 comes with a host of new hooks
+
 Ex: The use() useActionState() useFormState() useTransition() etc
-  
 
 ## Develop Search Screens
-1. autofetch is set to false
-fetch the object that represents the movie where query matches the 'user input for the search'
 
-             const {
-               data: movies,
-               loading,
-               error,
-            } = useFetch(() => fetchMovies({ query: searchQuery }), false);
+1.  autofetch is set to false
+    fetch the object that represents the movie where query matches the 'user input for the search'
 
+                 const {
+                   data: movies,
+                   loading,
+                   error,
+                } = useFetch(() => fetchMovies({ query: searchQuery }), false);
 
-2. ListHeaderComponent is a special Flatlist prop that renders an element (react fragment) that contains what is displayed at the top of the list.
+2.  ListHeaderComponent is a special Flatlist prop that renders an element (react fragment) that contains what is displayed at the top of the list.
 
 3.  (Non-null Assertion): This operator tells TypeScript that you are certain the value is not null or undefined. It effectively overrides TypeScript's type checking for null or undefined values.
 
@@ -154,9 +155,9 @@ fetch the object that represents the movie where query matches the 'user input f
                 </Text>
               )}
 
-   
-   ## Debouncing
-   So not to overload the api with every key stroke. Wrap a search term into a timeout function
+## Debouncing
+
+So not to overload the api with every key stroke. Wrap a search term into a timeout function
 
          useEffect(() => {
             // const func = async () => {
@@ -175,7 +176,9 @@ fetch the object that represents the movie where query matches the 'user input f
          //* recall the function every time the searchQuery changes.
 
 ## Appwrite Setup
-## Algorithm that displays trending status of  movies;  i.e. what movies are the app users searching for.
+
+## Algorithm that displays trending status of movies; i.e. what movies are the app users searching for.
+
 1. The more users are performing a specific search, the higher its trending status become. Requires tracking and analyzing search patterns over time. This requires a database to store searches permanently.
 2. Make use as a BaaS (backend as a service). Provides APIs and tools to store and manage data
 3. This project uses Appwrite. Simple, openSource, and free to use.
@@ -189,52 +192,55 @@ run this in your bash shell
 
 click Next, and Next again to skip the optional steps
 then "Go to dashboard" to set up the backend.
+
 1. Create a database and collections within it.
    1. call it "movies" => create
    2. You will get a database ID.
    3. EXPO_PUBLIC_APPWRITE_DATABASE_ID=#### goes into .env
 2. Create a collection
    1. call it "metrics" => Create
-   2. You will get a collection ID 
+   2. You will get a collection ID
    3. EXPO_PUBLIC_APPWRITE_COLLECTION_ID=#### goes into .env
 3. Now create attributes
-   1.  Select the "attribute" tab. => Create attribute => string 
-   2.  Attribute Key* searchTerm => 1000 character => required => Create
-   3.  integer Attribute Key* count => default 0 =>Create
-       1.  This is how many times a user searched for a specific search term
-   4. url Attribute Key* poster_url => required =>Create
-   5. integer  Attribute Key* movie_id => required =>Create
-   6. string  Attribute Key* title => 1000 => required =>Create
-   
+
+   1. Select the "attribute" tab. => Create attribute => string
+   2. Attribute Key\* searchTerm => 1000 character => required => Create
+   3. integer Attribute Key\* count => default 0 =>Create
+      1. This is how many times a user searched for a specific search term
+   4. url Attribute Key\* poster_url => required =>Create
+   5. integer Attribute Key\* movie_id => required =>Create
+   6. string Attribute Key\* title => 1000 => required =>Create
+
    ![alt text](image-2.png)
 
    Permissions:
+
    1. Go to "Settings" tab
    2. Scroll down to 'Permissions'
    3. Click the plus icon +
-   4. select "Any" and grant full CRUD => Update 
+   4. select "Any" and grant full CRUD => Update
 
    Test Permissions
+
    1. create a new file services/appwrite.ts
    2. create a backend service tool for a database and trending functions.
       1. to store persistent data and show the top trending movies.
 
-## Install MaskedView  for React Native
+## Install MaskedView for React Native
+
 text appears as a cutout over an image
-    
+
       npm install --save @react-native-masked-view/masked-view
       import MaskedView from '@react-native-masked-view/masked-view';
 
+## Optimization:
 
-
-
-## Optimization: 
 In the home page index.tsx, we have a Scroll View which is a vertical view and a Flatlist inside, which is in the same orientation, also a vertical view. A horizontal flatlist is not a problem. But having two Flatlist of the same orientation is generally not considered a good practice.
 
 We are using a scroll view to render most of the movies. Docs say ScrollView Vs Flatlist - which to use?
-   
+
       https://reactnative.dev/docs/scrollview
-   
+
 ScrollView renders all its react child components at once, but this has a performance downside.
 
 Imagine you have a very long list of items you want to display, maybe several screens worth of content. Creating JS components and native views for everything all at once, much of which may not even be shown, will contribute to slow rendering and increased memory usage.
