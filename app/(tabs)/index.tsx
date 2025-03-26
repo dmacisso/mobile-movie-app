@@ -39,7 +39,7 @@ const Index = () => {
         className="absolute w-full z-0"
         resizeMode="cover"
       />
-      {/*Make the whole screen scrollable */}
+      {/*Make the whole screen scrollable Note: this is  a vertical view */}
       <ScrollView
         className="flex-1 px-5"
         showsVerticalScrollIndicator={false}

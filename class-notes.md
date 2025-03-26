@@ -228,6 +228,19 @@ text appears as a cutout over an image
 
 
 
+## Optimization: 
+In the home page index.tsx, we have a Scroll View which is a vertical view and a Flatlist inside, which is in the same orientation, also a vertical view. A horizontal flatlist is not a problem. But having two Flatlist of the same orientation is generally not considered a good practice.
 
+We are using a scroll view to render most of the movies. Docs say ScrollView Vs Flatlist - which to use?
    
+      https://reactnative.dev/docs/scrollview
    
+ScrollView renders all its react child components at once, but this has a performance downside.
+
+Imagine you have a very long list of items you want to display, maybe several screens worth of content. Creating JS components and native views for everything all at once, much of which may not even be shown, will contribute to slow rendering and increased memory usage.
+
+This is where FlatList comes into play. Flatlist is smart. FlatList renders items lazily, when they are about to appear, and removes items that scroll way off screen to save memory and processing time.
+
+When We have large lists of vertical elements, we want a flatlist and not a scroll view
+
+In our project, we did not allow the flatlist to reach its full potential because we set scroll enable to false. We let the Scroll view do its job. It is fine for our use case because we dont have two many elements. In larger apps we would take a different approach and do what the software allows you to do.

@@ -64,10 +64,13 @@ const MovieDetails = () => {
           <View className="flex flex-row justify-between w-1/2">
             <MovieInfo
               label="Budget"
+              //@ts-ignore
               value={`$${movie?.budget / 1_000_000} million`}
             />
             <MovieInfo
               label="Revenue"
+              //@ts-ignore
+
               value={`$${Math.round(movie?.revenue) / 1_000_000} million`}
             />
           </View>
